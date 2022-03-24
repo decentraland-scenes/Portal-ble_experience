@@ -90,7 +90,7 @@ input.subscribe('BUTTON_DOWN', ActionButton.POINTER, true, async (event) => {
 
       portalSuccessSound.getComponent(AudioSource).playOnce()
 
-      if (activePortal == PortalColor.Blue) {
+      if (activePortal === PortalColor.Blue) {
         portalBlue.spawn(
           dummy.getComponent(Transform).position,
           dummy.getComponent(Transform).rotation,
@@ -114,7 +114,7 @@ input.subscribe('BUTTON_DOWN', ActionButton.POINTER, true, async (event) => {
 
 // Swap between portal colors when pressing the E key
 input.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (): void => {
-  if (activePortal == PortalColor.Blue) {
+  if (activePortal === PortalColor.Blue) {
     activePortal = PortalColor.Orange
     gunBlueGlow.getComponent(Transform).scale.setAll(0)
     gunOrangeGlow.getComponent(Transform).scale.setAll(1)
