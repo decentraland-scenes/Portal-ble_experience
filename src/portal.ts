@@ -1,7 +1,7 @@
 // Config
 export enum PortalColor {
   Blue = 0,
-  Orange = 1,
+  Orange = 1
 }
 
 const HEIGHT_ABOVE_GROUND = 1.2 // In meters
@@ -25,7 +25,7 @@ export class Portal extends Entity {
   }
   spawn(position: Vector3, rotation: Quaternion, cameraTarget: Vector3) {
     this.addComponentOrReplace(new Transform()) // Reset the Transform component
-    let transform = this.getComponent(Transform)
+    const transform = this.getComponent(Transform)
     transform.rotation = rotation
     transform.position = position
     this.cameraTarget = cameraTarget

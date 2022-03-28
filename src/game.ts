@@ -16,7 +16,7 @@ const portalBlue = new Portal(new GLTFShape('models/portalBlue.glb'))
 const DELAY_TIME = 3000 // In milliseconds
 const RESET_SIZE = 2 // In meters
 
-let triggerBox = new utils.TriggerBoxShape(
+const triggerBox = new utils.TriggerBoxShape(
   new Vector3(RESET_SIZE, RESET_SIZE, RESET_SIZE),
   Vector3.Zero()
 )
@@ -42,7 +42,7 @@ portalBlue.addComponent(
           })
         )
       }
-    },
+    }
   })
 )
 portalOrange.addComponent(
@@ -66,7 +66,7 @@ portalOrange.addComponent(
           })
         )
       }
-    },
+    }
   })
 )
 
@@ -80,13 +80,13 @@ input.subscribe('BUTTON_DOWN', ActionButton.POINTER, true, async (event) => {
     //if (event.hit.meshName.match('lightWall_collider')) {
     // Only allow portals to appear on light walls
     if (event.hit.entityId !== '' && event.hit.length < 40) {
-      let offset = Vector3.Normalize(
+      const offset = Vector3.Normalize(
         Camera.instance.position.clone().subtract(event.hit.hitPoint.clone())
       ).scale(0.1)
 
-      let finalPosition = event.hit.hitPoint.add(offset)
+      const finalPosition = event.hit.hitPoint.add(offset)
 
-      let dummy = new DummyEnt(finalPosition, event.hit.normal)
+      const dummy = new DummyEnt(finalPosition, event.hit.normal)
 
       portalSuccessSound.getComponent(AudioSource).playOnce()
 
@@ -96,7 +96,7 @@ input.subscribe('BUTTON_DOWN', ActionButton.POINTER, true, async (event) => {
           dummy.getComponent(Transform).rotation,
           dummy.cameraTarget
         )
-        let transform = portalBlue.getComponent(Transform)
+        const transform = portalBlue.getComponent(Transform)
       } else {
         portalOrange.spawn(
           dummy.getComponent(Transform).position,
@@ -104,7 +104,7 @@ input.subscribe('BUTTON_DOWN', ActionButton.POINTER, true, async (event) => {
           dummy.cameraTarget
         )
 
-        let transform = portalOrange.getComponent(Transform)
+        const transform = portalOrange.getComponent(Transform)
       }
     } else {
       portalFailSound.getComponent(AudioSource).playOnce()
@@ -125,8 +125,8 @@ input.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (): void => {
   }
 })
 
-let hasGun: boolean = false
-let hasKey: boolean = false
+const hasGun: boolean = false
+const hasKey: boolean = false
 
 // Gun
 const gunBlueGlow = new Entity()
@@ -137,7 +137,7 @@ gunOrangeGlow.addComponent(new Transform())
 gunOrangeGlow.addComponent(new GLTFShape('models/portalGunOrangeGlow.glb'))
 gunOrangeGlow.getComponent(Transform).scale.setAll(0) // Hide orange glow
 
-let gun = new Gun(
+const gun = new Gun(
   new GLTFShape('models/portalGun.glb'),
   new Transform({ position: new Vector3(8, 1.5, 4.5) }),
   gunBlueGlow,

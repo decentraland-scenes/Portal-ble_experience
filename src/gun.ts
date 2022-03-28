@@ -31,7 +31,7 @@ export class Gun extends Entity {
         {
           onCameraEnter: () => {
             this.pickUp()
-          },
+          }
         }
       )
     )
