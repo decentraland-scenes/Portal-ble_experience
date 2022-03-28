@@ -29,7 +29,7 @@ portalBlue.addComponent(
         movePlayerTo(
           portalOrange.getComponent(Transform).position,
           portalOrange.cameraTarget
-        )
+        ).catch((error) => log(error))
         triggerBox.size.setAll(0) // Resize the trigger so that the player doesn't port in and out constantly
         portalOrange.addComponentOrReplace(
           new utils.Delay(DELAY_TIME, () => {
@@ -53,7 +53,7 @@ portalOrange.addComponent(
         movePlayerTo(
           portalBlue.getComponent(Transform).position,
           portalBlue.cameraTarget
-        )
+        ).catch((error) => log(error))
         triggerBox.size.setAll(0)
         portalOrange.addComponentOrReplace(
           new utils.Delay(DELAY_TIME, () => {
@@ -79,7 +79,7 @@ input.subscribe('BUTTON_DOWN', ActionButton.POINTER, true, async (event) => {
     if (!event.hit) return
     //if (event.hit.meshName.match('lightWall_collider')) {
     // Only allow portals to appear on light walls
-    if (event.hit.entityId != '' && event.hit.length < 40) {
+    if (event.hit.entityId !== '' && event.hit.length < 40) {
       let offset = Vector3.Normalize(
         Camera.instance.position.clone().subtract(event.hit.hitPoint.clone())
       ).scale(0.1)
